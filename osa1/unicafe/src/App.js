@@ -36,8 +36,8 @@ function App() {
       <p>
         <h2>Statistics!</h2>
         <Statistics name="good" type={good}/>
-        <Statistics name="neutral" type={good}/>
-        <Statistics name="bad" type={good}/>
+        <Statistics name="neutral" type={neutral}/>
+        <Statistics name="bad" type={bad}/>
         <Statistics name="all" type={good+neutral+bad}/>
         <Statistics name="feedback average" type={(good*1)+(bad*-1)/(good+neutral+bad)}/>
         <Statistics name="percentage of positive feedback" type={[(good/(good+neutral+bad))*100, '%']}/>
