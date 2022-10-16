@@ -2,15 +2,18 @@ import './App.js';
 import {useState} from 'react'
 
 const Statistics = (props) => {
+  const StatisticLine = ({text, value}) => <p>{text}: {value}</p>
+  
+  //checks if any feedback given
   if(props.type[0]>0 || props.type[1]>0 || props.type[2]>0){
     return(
       <div>
-        {props.name[0]}: {props.type[0]}<br/>
-        {props.name[1]}: {props.type[1]}<br/>
-        {props.name[2]}: {props.type[2]}<br/>
-        {props.name[3]}: {props.type[3]}<br/>
-        {props.name[4]}: {props.type[4]}<br/>
-        {props.name[5]}: {props.type[5]}<br/>
+        <StatisticLine text={props.name[0]} value={props.type[0]}/>
+        <StatisticLine text={props.name[1]} value={props.type[1]}/>
+        <StatisticLine text={props.name[2]} value={props.type[2]}/>
+        <StatisticLine text={props.name[3]} value={props.type[3]}/>
+        <StatisticLine text={props.name[4]} value={props.type[4]}/>
+        <StatisticLine text={props.name[5]} value={props.type[5]}/>
       </div>
     )
   }
@@ -19,6 +22,30 @@ const Statistics = (props) => {
       No feedback given
     </div>
   )
+}
+
+const Button = (props) => {
+  if(props.name==="good"){
+    return (
+      <button onClick={props.handler}>
+        Good :)
+      </button>
+    )
+  }
+  else if(props.name==="bad"){
+    return (
+      <button onClick={props.handler}>
+        Bad :(
+      </button>
+    )
+  }
+  else{
+    return (
+      <button onClick={props.handler}>
+        Neutral :I
+      </button>
+    )
+  }
 }
 
 function App() {
@@ -42,13 +69,13 @@ function App() {
   return(
     <div>
       <h1>Give feedback! :^)</h1>
-      <button onClick={handleGood}>Good :)</button>
-      <button onClick={handleNeutral}>Neutral :I</button>
-      <button onClick={handleBad}>Bad :(</button>
+      <Button name="good" handler={handleGood}/>
+      <Button name="neutral" handler={handleNeutral}/>
+      <Button name="bad" handler={handleBad}/>
       <p>
-        <h2>Statistics!</h2>
+        Statistics!<br/>
         <Statistics name={["good", "neutral", "bad", "all", "feedback average", "percentage of positive feedback"]}
-         type={[good, neutral, bad, (good+neutral+bad), ((good*1)+(bad*-1)/(good+neutral+bad)), [(good/(good+neutral+bad))*100, '%']]}/>
+         type={[good, neutral, bad, (good+neutral+bad), ((good-bad)/(good+neutral+bad)), [(good/(good+neutral+bad))*100, '%']]}/>
       </p>
     </div>
   )
