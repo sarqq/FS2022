@@ -2,19 +2,35 @@ import './App.js';
 import {useState} from 'react'
 
 const Statistics = (props) => {
-  const StatisticLine = ({text, value}) => <p>{text}: {value}</p>
-  
   //checks if any feedback given
-  if(props.type[0]>0 || props.type[1]>0 || props.type[2]>0){
+  if(props.value[0]>0 || props.value[1]>0 || props.value[2]>0){
     return(
-      <div>
-        <StatisticLine text={props.name[0]} value={props.type[0]}/>
-        <StatisticLine text={props.name[1]} value={props.type[1]}/>
-        <StatisticLine text={props.name[2]} value={props.type[2]}/>
-        <StatisticLine text={props.name[3]} value={props.type[3]}/>
-        <StatisticLine text={props.name[4]} value={props.type[4]}/>
-        <StatisticLine text={props.name[5]} value={props.type[5]}/>
-      </div>
+      <table>
+        <tr>
+          <td>{props.name[0]}</td>
+          <td>{props.value[0]}</td>
+        </tr>
+        <tr>
+          <td>{props.name[1]}</td>
+          <td>{props.value[1]}</td>
+        </tr>
+        <tr>
+          <td>{props.name[2]}</td>
+          <td>{props.value[2]}</td>
+        </tr>
+        <tr>
+          <td>{props.name[3]}</td>
+          <td>{props.value[3]}</td>
+        </tr>
+        <tr>
+          <td>{props.name[4]}</td>
+          <td>{props.value[4]}</td>
+        </tr>
+        <tr>
+          <td>{props.name[5]}</td>
+          <td>{props.value[5]}</td>
+        </tr>
+      </table>
     )
   }
   return (
@@ -72,11 +88,11 @@ function App() {
       <Button name="good" handler={handleGood}/>
       <Button name="neutral" handler={handleNeutral}/>
       <Button name="bad" handler={handleBad}/>
-      <p>
-        Statistics!<br/>
+      <div>
+        <h2>Statistics!</h2>
         <Statistics name={["good", "neutral", "bad", "all", "feedback average", "percentage of positive feedback"]}
-         type={[good, neutral, bad, (good+neutral+bad), ((good-bad)/(good+neutral+bad)), [(good/(good+neutral+bad))*100, '%']]}/>
-      </p>
+         value={[good, neutral, bad, (good+neutral+bad), ((good-bad)/(good+neutral+bad)), [(good/(good+neutral+bad))*100, '%']]}/>
+      </div>
     </div>
   )
 }
