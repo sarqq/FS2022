@@ -2,9 +2,21 @@ import './App.js';
 import {useState} from 'react'
 
 const Statistics = (props) => {
+  if(props.type[0]>0 || props.type[1]>0 || props.type[2]>0){
+    return(
+      <div>
+        {props.name[0]}: {props.type[0]}<br/>
+        {props.name[1]}: {props.type[1]}<br/>
+        {props.name[2]}: {props.type[2]}<br/>
+        {props.name[3]}: {props.type[3]}<br/>
+        {props.name[4]}: {props.type[4]}<br/>
+        {props.name[5]}: {props.type[5]}<br/>
+      </div>
+    )
+  }
   return (
     <div>
-      {props.name}: {props.type}
+      No feedback given
     </div>
   )
 }
@@ -35,12 +47,8 @@ function App() {
       <button onClick={handleBad}>Bad :(</button>
       <p>
         <h2>Statistics!</h2>
-        <Statistics name="good" type={good}/>
-        <Statistics name="neutral" type={neutral}/>
-        <Statistics name="bad" type={bad}/>
-        <Statistics name="all" type={good+neutral+bad}/>
-        <Statistics name="feedback average" type={(good*1)+(bad*-1)/(good+neutral+bad)}/>
-        <Statistics name="percentage of positive feedback" type={[(good/(good+neutral+bad))*100, '%']}/>
+        <Statistics name={["good", "neutral", "bad", "all", "feedback average", "percentage of positive feedback"]}
+         type={[good, neutral, bad, (good+neutral+bad), ((good*1)+(bad*-1)/(good+neutral+bad)), [(good/(good+neutral+bad))*100, '%']]}/>
       </p>
     </div>
   )
