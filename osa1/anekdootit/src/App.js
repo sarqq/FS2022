@@ -1,5 +1,4 @@
 import './App.js';
-
 import {useState} from 'react'
 
 const App = () => {
@@ -13,15 +12,22 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when dianosing patients.'
   ]
 
+  const [points, setPoints] = useState([0,0,0,0,0,0,0])
   const [selected, setSelected] = useState(0)
-  const Randomize = () => {
-    setSelected(Math.floor(Math.random()*anecdotes.length))
+  
+  const vote = (index) => {
+    const copy = [...points]
+    let temp = copy[index]+1
+    copy[index] = temp
+    setPoints(copy)
   }
 
   return (
     <div>
       {anecdotes[selected]}<br/>
-      <button onClick={Randomize}>Next anecdote</button>
+      Has {points[selected]} votes<br/>
+      <button onClick={() => {vote(selected)}}>Vote</button>
+      <button onClick={() => setSelected(Math.floor(Math.random()*anecdotes.length))}>Next anecdote</button>
     </div>
   );
 }
